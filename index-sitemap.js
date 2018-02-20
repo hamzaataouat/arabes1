@@ -1,18 +1,19 @@
----------------------------------------------------
-// BLOGTOC
-// ---------------------------------------------------
-// BlogToc creates a clickable Table Of Contents for
-// Blogger Blogs.
-// It uses the JSON post feed, and create a ToC of it.
-// The ToC can be sorted by title or by date, both
-// ascending and descending, and can be filtered by
-// label.
-// ---------------------------------------------------
-// Author: @didorahim
-// Url: https://www.arabes1.com
-// Version: 2
-// Date: 30-07--02-2018
-// ---------------------------------------------------
+   var postTitle = new Array();     // array of posttitles
+   var postUrl = new Array();       // array of posturls
+   var postDate = new Array();      // array of post publish dates
+   var postSum = new Array();       // array of post summaries
+   var postLabels = new Array();    // array of post labels
+
+// global variables
+   var sortBy = "datenewest";         // default value for sorting ToC
+   var tocLoaded = false;           // true if feed is read and ToC can be displayed
+   var numChars = 250;              // number of characters in post summary
+   var postFilter = '';             // default filter value
+   var tocdiv = document.getElementById("bp_toc"); //the toc container
+   var totalEntires =0; //Entries grabbed till now
+   var totalPosts =0; //Total number of posts in the blog.
+
+// main callback function
 
 function loadtoc(json) {
 
@@ -187,7 +188,8 @@ function displayToc(filter) {
       tocTool3 = 'Click to show all posts';
    }
    tocTable += '<table>';
-   tocTable += '<tr>';
+   tocTable += '
+<tr>';
    tocTable += '<td class="toc-header-col1">';
    tocTable += '<a href="javascript:toggleTitleSort();" title="' + tocTool1 + '">' + tocHead1 + '</a>';
    tocTable += '</td>';
@@ -197,24 +199,29 @@ function displayToc(filter) {
    tocTable += '<td class="toc-header-col3">';
    tocTable += '<a href="javascript:allPosts();" title="' + tocTool3 + '">' + tocHead3 + '</a>';
    tocTable += '</td>';
-   tocTable += '</tr>';
+   tocTable += '</tr>
+';
    for (var i = 0; i < postTitle.length; i++) {
       if (filter == '') {
-         tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
+         tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>
+';
          numDisplayed++;
       } else {
           z = postLabels[i].lastIndexOf(filter);
           if ( z!= -1) {
-             tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
+             tocTable += '
+<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>
+';
              numDisplayed++;
           }
         }
    }
-   tocTable += '</table>';
+   tocTable += '</table>
+';
    if (numDisplayed == postTitle.length) {
-      var tocNote = '<span class="toc-note"> عدد الموضوعات ' + postTitle.length + ' موضوع<br/></span>'; }
+      var tocNote = '<span class="toc-note"> عدد المواضيع .... ' + postTitle.length + ' موضوع<br/></span>'; }
    else {
-      var tocNote = '<span class="toc-note">عدد الموضوعات ' + numDisplayed + ' الخاصة بقسم \'';
+      var tocNote = '<span class="toc-note">عدد المواضيع ' + numDisplayed + ' الخاصة بقسم \'';
       tocNote += postFilter + '\' *** '+ postTitle.length + ' العدد الكلى للموضوعات<br/></span>';
    }
    tocdiv.innerHTML = tocNote + tocTable;
@@ -243,12 +250,16 @@ function showToc() {
   }
   else { alert("Just wait... TOC is loading"); }
 }
-"<div id=\"toc-loading\">Loading content, please wait...<br /><img align=\"middle\" src=\"http://2.bp.blogspot.com/-WK0-4ILTaL8/T0NjToWRWlI/AAAAAAAABmI/U5p3cqo9lOU/s1600/loading.gif\" /></div>"
+"<div id=\"toc-loading\">
+Loading content, please wait...<br /><img align=\"middle\" src=\"https://2.bp.blogspot.com/-WK0-4ILTaL8/T0NjToWRWlI/AAAAAAAABmI/U5p3cqo9lOU/s1600/loading.gif\" /></div>
+"
 
 function hideToc() {
   var tocdiv = document.getElementById("toc");
   tocdiv.innerHTML = '';
   var toclink = document.getElementById("toclink");
-  toclink.innerHTML = '<a href="#" onclick="scroll(0,0); showToc(); Effect.toggle('+"'toc-result','blind');"+'">» Show Table of Contents</a> <img src="http://chenkaie.blog.googlepages.com/new_1.gif"/>';
+  toclink.innerHTML = '<a href="#" onclick="scroll(0,0); showToc(); Effect.toggle('+"'toc-result','blind');"+'">» Show Table of Contents</a> <img src="https://chenkaie.blog.googlepages.com/new_1.gif"/>';
 }
-"<div id=\"toc-loading\">Loading content, please wait...<br /><img align=\"middle\" src=\"http://2.bp.blogspot.com/-WK0-4ILTaL8/T0NjToWRWlI/AAAAAAAABmI/U5p3cqo9lOU/s1600/loading.gif\" /></div>";
+"<div id=\"toc-loading\">
+Loading content, please wait...<br /><img align=\"middle\" src=\"https://2.bp.blogspot.com/-WK0-4ILTaL8/T0NjToWRWlI/AAAAAAAABmI/U5p3cqo9lOU/s1600/loading.gif\" /></div>
+";
