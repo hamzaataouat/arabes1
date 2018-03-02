@@ -6,7 +6,7 @@ $(".link-lightbox").on("click", function() {
         e = '<div id="back-lightbox">',
         f = '<div id="background-close"></div>',
         g = '<div id="window">',
-        h = '<div id="ref"><a href="//www.arabes1.com/2018/03/jquery-on-click-pop-up-light-box-video.html" rel="nofollow" target="_blank">للحصول على الاضافة</a>',
+        h = '<div id="ref"><a href="//www.arabes1.com/2018/03/jquery-on-click-pop-up-light-box-video.html" rel="nofollow" target="_blank">مطورة من طرف : علوم و تقنيات</a>',
         i = "</div></div></div></div>";
     if ($("body").append(g + f + e + d + c + b + h+i), $("#window").hide(), "youtube" == $(this).data("videosite")) var i = "https://www.youtube.com/embed/" + $(this).data("videoid") + "?autoplay=1";
     else if ("vimeo" == $(this).data("videosite")) var i = "https://player.vimeo.com/video/" + $(this).data("videoid") + "?autoplay=1";
